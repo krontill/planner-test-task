@@ -1,7 +1,7 @@
-import createRects from './createRects';
+import rectsArray from './rectsArray';
 
 const drawingRects = (ctx) => {
-    return createRects.forEach((rect) => {
+    return rectsArray.forEach((rect) => {
         ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
     })
 };

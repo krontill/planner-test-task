@@ -1,10 +1,9 @@
-import createRects from './createRects';
+import rectsArray from './rectsArray';
 import drawingRects from "./drawingRects";
 
 const mouseEvent = (canvas, ctx) => {
     const offsetX = canvas.getBoundingClientRect().left;
     const offsetY = canvas.getBoundingClientRect().top;
-    const rects = createRects;
     let drag = false;
     let startX;
     let startY;
@@ -19,10 +18,10 @@ const mouseEvent = (canvas, ctx) => {
         const mouseY = parseInt(e.clientY - offsetY);
         // test each rect to see if mouse is inside
         drag = false;
-        for (let i = 0; i < rects.length; i++) {
-            if (mouseX > rects[i].x && mouseX < rects[i].x + rects[i].width && mouseY > rects[i].y && mouseY < rects[i].y + rects[i].height) {
+        for (let i = 0; i < rectsArray.length; i++) {
+            if (mouseX > rectsArray[i].x && mouseX < rectsArray[i].x + rectsArray[i].width && mouseY > rectsArray[i].y && mouseY < rectsArray[i].y + rectsArray[i].height) {
                 drag = true;
-                rects[i].isDragging = true;
+                rectsArray[i].isDragging = true;
             }
         }
         // save the current mouse position
@@ -32,9 +31,9 @@ const mouseEvent = (canvas, ctx) => {
 
     const mouseUp = (e) => {
         drag = false;
-        for (let i = 0; i < rects.length; i++) {
-            if (rects[i].isDragging === true) {
-                rects[i].isDragging = false;
+        for (let i = 0; i < rectsArray.length; i++) {
+            if (rectsArray[i].isDragging === true) {
+                rectsArray[i].isDragging = false;
             }
         }
     };
@@ -47,10 +46,10 @@ const mouseEvent = (canvas, ctx) => {
             const distanceX = mouseX - startX;
             const distanceY = mouseY - startY;
             // move each rect that isDragging by the distance the mouse has moved since the last mousemove
-            for (let i = 0; i < rects.length; i++) {
-                if (rects[i].isDragging) {
-                    rects[i].x += distanceX;
-                    rects[i].y += distanceY;
+            for (let i = 0; i < rectsArray.length; i++) {
+                if (rectsArray[i].isDragging) {
+                    rectsArray[i].x += distanceX;
+                    rectsArray[i].y += distanceY;
                 }
             }
             // redraw the scene with the new rect positions
