@@ -1,10 +1,11 @@
 import rectsArray from './rectsArray';
 import drawingRects from "./drawingRects";
+import overlayRects from './overlayRects';
 
 const mouseEvent = (canvas, ctx) => {
     const offsetX = canvas.getBoundingClientRect().left;
     const offsetY = canvas.getBoundingClientRect().top;
-    let drag = false;
+    let dragRectIndex = null;
     let startX;
     let startY;
 
@@ -17,10 +18,10 @@ const mouseEvent = (canvas, ctx) => {
         const mouseX = parseInt(e.clientX - offsetX);
         const mouseY = parseInt(e.clientY - offsetY);
         // test each rect to see if mouse is inside
-        drag = false;
+        dragRectIndex = null;
         for (let i = 0; i < rectsArray.length; i++) {
             if (mouseX > rectsArray[i].x && mouseX < rectsArray[i].x + rectsArray[i].width && mouseY > rectsArray[i].y && mouseY < rectsArray[i].y + rectsArray[i].height) {
-                drag = true;
+                dragRectIndex = i;
                 rectsArray[i].isDragging = true;
             }
         }
@@ -30,7 +31,7 @@ const mouseEvent = (canvas, ctx) => {
     };
 
     const mouseUp = (e) => {
-        drag = false;
+        dragRectIndex = null;
         for (let i = 0; i < rectsArray.length; i++) {
             if (rectsArray[i].isDragging === true) {
                 rectsArray[i].isDragging = false;
@@ -39,7 +40,7 @@ const mouseEvent = (canvas, ctx) => {
     };
 
     const mouseMove = (e) => {
-        if (drag) {
+        if (dragRectIndex !== null) {
             const mouseX = parseInt(e.clientX - offsetX);
             const mouseY = parseInt(e.clientY - offsetY);
             // calculate the distance the mouse has moved since the last mousemove
@@ -53,6 +54,7 @@ const mouseEvent = (canvas, ctx) => {
                 }
             }
             // redraw the scene with the new rect positions
+            overlayRects(dragRectIndex);
             clear();
             drawingRects(ctx);
             // reset the starting mouse position for the next mousemove

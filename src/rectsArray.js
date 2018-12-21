@@ -1,3 +1,4 @@
+import {defaultColorRect} from './rectColors';
 //В коде можно создать любое количество объектов, представляющих информацию о прямоугольниках разных размеров.
 /*let rects = [];
 
@@ -27,43 +28,50 @@ const rectsArray = [
         width: 102,
         x: 0,
         y: 0,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 36,
         width: 123,
         x: 0,
         y: 32,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 44,
         width: 88,
         x: 0,
         y: 73,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 43,
         width: 60,
         x: 0,
         y: 122,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 30,
         width: 91,
         x: 0,
         y: 170,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 38,
         width: 125,
         x: 0,
         y: 205,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }, {
         height: 35,
         width: 107,
         x: 0,
         y: 248,
-        isDragging: false
+        isDragging: false,
+        fill: defaultColorRect
     }
 ];
 
