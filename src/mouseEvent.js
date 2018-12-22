@@ -1,6 +1,7 @@
 import rectsArray from './rectsArray';
 import drawingRects from "./drawingRects";
 import overlayRects from './overlayRects';
+import setFillOverlayRects from './setFillOverlayRects';
 
 const mouseEvent = (canvas, ctx) => {
     const offsetX = canvas.getBoundingClientRect().left;
@@ -53,8 +54,8 @@ const mouseEvent = (canvas, ctx) => {
                     rectsArray[i].y += distanceY;
                 }
             }
-            // redraw the scene with the new rect positions
-            overlayRects(dragRectIndex);
+            // redraw the scene with the new rect positions and fill
+            setFillOverlayRects(overlayRects(dragRectIndex));
             clear();
             drawingRects(ctx);
             // reset the starting mouse position for the next mousemove
