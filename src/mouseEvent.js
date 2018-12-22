@@ -7,6 +7,8 @@ const mouseEvent = (canvas, ctx) => {
     const offsetX = canvas.getBoundingClientRect().left;
     const offsetY = canvas.getBoundingClientRect().top;
     let dragRectIndex = null;
+    let beginRectX;
+    let beginRectY;
     let startX;
     let startY;
 
@@ -21,17 +23,35 @@ const mouseEvent = (canvas, ctx) => {
         // test each rect to see if mouse is inside
         dragRectIndex = null;
         for (let i = 0; i < rectsArray.length; i++) {
-            if (mouseX > rectsArray[i].x && mouseX < rectsArray[i].x + rectsArray[i].width && mouseY > rectsArray[i].y && mouseY < rectsArray[i].y + rectsArray[i].height) {
+            if (mouseX > rectsArray[i].x
+                && mouseX < rectsArray[i].x + rectsArray[i].width
+                && mouseY > rectsArray[i].y
+                && mouseY < rectsArray[i].y + rectsArray[i].height) {
                 dragRectIndex = i;
                 rectsArray[i].isDragging = true;
+                break;
             }
         }
         // save the current mouse position
         startX = mouseX;
         startY = mouseY;
+        if (dragRectIndex !== null) {
+            beginRectX = rectsArray[dragRectIndex].x;
+            beginRectY = rectsArray[dragRectIndex].y;
+        }
     };
 
-    const mouseUp = (e) => {
+    const mouseUp = () => {
+        if (dragRectIndex !== null) {
+            if (overlayRects(dragRectIndex).length > 1) {
+                // Return the rect to initial position.
+                rectsArray[dragRectIndex].x = beginRectX;
+                rectsArray[dragRectIndex].y = beginRectY;
+                setFillOverlayRects(); // set default fill
+                clear();
+                drawingRects(ctx);
+            }
+        }
         dragRectIndex = null;
         for (let i = 0; i < rectsArray.length; i++) {
             if (rectsArray[i].isDragging === true) {
@@ -47,13 +67,9 @@ const mouseEvent = (canvas, ctx) => {
             // calculate the distance the mouse has moved since the last mousemove
             const distanceX = mouseX - startX;
             const distanceY = mouseY - startY;
-            // move each rect that isDragging by the distance the mouse has moved since the last mousemove
-            for (let i = 0; i < rectsArray.length; i++) {
-                if (rectsArray[i].isDragging) {
-                    rectsArray[i].x += distanceX;
-                    rectsArray[i].y += distanceY;
-                }
-            }
+            // move drag rect by the distance the mouse has moved since the last mousemove
+            rectsArray[dragRectIndex].x += distanceX;
+            rectsArray[dragRectIndex].y += distanceY;
             // redraw the scene with the new rect positions and fill
             setFillOverlayRects(overlayRects(dragRectIndex));
             clear();
