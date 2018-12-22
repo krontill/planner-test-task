@@ -2,6 +2,7 @@ import rectsArray from './rectsArray';
 import drawingRects from "./drawingRects";
 import overlayRects from './overlayRects';
 import setFillOverlayRects from './setFillOverlayRects';
+import stickRects from './stickRects';
 
 const mouseEvent = (canvas, ctx) => {
     const offsetX = canvas.getBoundingClientRect().left;
@@ -43,6 +44,12 @@ const mouseEvent = (canvas, ctx) => {
 
     const mouseUp = () => {
         if (dragRectIndex !== null) {
+            if (overlayRects(dragRectIndex).length === 1) {
+                if (stickRects(dragRectIndex)) {
+                    clear();
+                    drawingRects(ctx);
+                }
+            }
             if (overlayRects(dragRectIndex).length > 1) {
                 // Return the rect to initial position.
                 rectsArray[dragRectIndex].x = beginRectX;
