@@ -1,7 +1,7 @@
 import rectsArray from './rectsArray';
 import overlayRects from './overlayRects';
 
-const distance = 4;
+const distance = 15;
 
 const stickRects = (moveRectIndex) => {
     let stickRectIndex = overlayRects(moveRectIndex, distance).filter((index) => index !== moveRectIndex)[0];
