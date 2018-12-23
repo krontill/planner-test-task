@@ -24,52 +24,52 @@ const createRects = (quantity) => {
 
 const rectsArray = [
     {
-        height: 27,
+        height: 35,
         width: 102,
         x: 0,
         y: 0,
         isDragging: false,
         fill: defaultColorRect
     }, {
-        height: 36,
+        height: 35,
         width: 123,
         x: 0,
-        y: 32,
+        y: 40,
         isDragging: false,
         fill: defaultColorRect
     }, {
-        height: 44,
+        height: 35,
         width: 88,
         x: 0,
-        y: 73,
+        y: 80,
         isDragging: false,
         fill: defaultColorRect
     }, {
-        height: 43,
+        height: 35,
         width: 60,
         x: 0,
-        y: 122,
+        y: 120,
         isDragging: false,
         fill: defaultColorRect
     }, {
-        height: 30,
+        height: 35,
         width: 91,
         x: 0,
-        y: 170,
+        y: 160,
         isDragging: false,
         fill: defaultColorRect
     }, {
-        height: 38,
+        height: 35,
         width: 125,
         x: 0,
-        y: 205,
+        y: 200,
         isDragging: false,
         fill: defaultColorRect
     }, {
         height: 35,
         width: 107,
         x: 0,
-        y: 248,
+        y: 240,
         isDragging: false,
         fill: defaultColorRect
     }
