@@ -4,5 +4,6 @@ html, body {
 }
 
 .canvas {
-    padding: 3px;
+    margin: 13px;
+    outline: 1px solid darkgray;
 }

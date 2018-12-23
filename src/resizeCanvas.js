@@ -1,6 +1,6 @@
 import drawingRects from "./drawingRects";
 
-const padding = 10;
+const padding = 30;
 const resizeCanvas = (canvas, ctx) => {
     const width = window.innerWidth - padding; //document.documentElement.clientWidth - если учитывать скролл
     const height = window.innerHeight - padding; //document.documentElement.clientHeight
