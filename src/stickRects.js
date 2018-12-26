@@ -4,8 +4,9 @@ import overlayRects from './overlayRects';
 const distance = 15;
 
 const stickRects = (moveRectIndex) => {
-    let stickRectIndex = overlayRects(moveRectIndex, distance).filter((index) => index !== moveRectIndex)[0];
-    if (stickRectIndex >= 0) {
+    const stickRectArray = overlayRects(moveRectIndex, distance).filter((index) => index !== moveRectIndex);
+    if (stickRectArray.length > 0) {
+        const stickRectIndex = stickRectArray[0];
         const distanceBetweenRect = [
             Math.abs(rectsArray[moveRectIndex].x - (rectsArray[stickRectIndex].x + rectsArray[stickRectIndex].width)),
             Math.abs(rectsArray[moveRectIndex].x + rectsArray[moveRectIndex].width - rectsArray[stickRectIndex].x),
@@ -29,7 +30,7 @@ const stickRects = (moveRectIndex) => {
                 break;
         }
     }
-    return !!stickRectIndex >= 0;
+    return stickRectArray.length > 0;
 };
 
 export default stickRects;
